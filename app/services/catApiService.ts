@@ -14,12 +14,20 @@ export interface CatBreedImage {
   url: string;
 }
 
-export const getCatBreeds = async (): Promise<CatBreed[]> => {
+export interface CatBreedParams {
+  limit?: number;
+  origin?: string;
+  order?: "ASC" | "DESC" | "RAND";
+}
+
+export const getCatBreeds = async (
+  params?: CatBreedParams
+): Promise<CatBreed[]> => {
   try {
-    // Fetch breeds
     const breedsResponse = await axios.get(`${CAT_API_BASE_URL}/breeds`, {
       params: {
-        limit: 20,
+        limit: params?.limit || 20,
+        order: params?.order,
       },
       headers: {
         "x-api-key": process.env.NEXT_PUBLIC_CAT_API_KEY,
@@ -37,7 +45,6 @@ export const getCatBreedById = async (
   breedId: string
 ): Promise<CatBreed | null> => {
   try {
-    // Fetch breed details
     const breedResponse = await axios.get(
       `${CAT_API_BASE_URL}/breeds/${breedId}`,
       {
@@ -47,20 +54,8 @@ export const getCatBreedById = async (
       }
     );
 
-    // Fetch image for the breed
-    const imageResponse = await axios.get(`${CAT_API_BASE_URL}/images/search`, {
-      params: {
-        breed_ids: breedId,
-        limit: 1,
-      },
-      headers: {
-        "x-api-key": process.env.NEXT_PUBLIC_CAT_API_KEY,
-      },
-    });
-
     return {
       ...breedResponse.data,
-      image_url: imageResponse.data[2]?.url || "",
     };
   } catch (error) {
     console.error(`Error fetching breed ${breedId}:`, error);
@@ -72,7 +67,6 @@ export const getCatImageByBreedId = async (
   breedId: string
 ): Promise<CatBreedImage | null> => {
   try {
-    // Fetch image for the breed
     const imageResponse = await axios.get(`${CAT_API_BASE_URL}/images/search`, {
       params: {
         breed_ids: breedId,

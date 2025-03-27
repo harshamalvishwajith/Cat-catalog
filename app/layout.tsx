@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import ThemeToggle from "./components/ThemeToggle";
-import { Providers } from "./providers";
+import "@/app/globals.css";
+import ThemeToggle from "@/app/components/ThemeToggle";
+import { Providers } from "@/app/providers";
+import PawPrints from "@/app/components/PawPrints";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors`}
       >
         <Providers>
+          <PawPrints />
           <ThemeToggle />
           {children}
         </Providers>

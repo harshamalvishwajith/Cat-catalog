@@ -42,7 +42,7 @@ export default function BreedDetailPage() {
 
   if (loading) {
     return (
-      <div className="container mx-auto p-4 flex flex-col items-center min-h-[60vh]">
+      <div className="container mx-auto p-4 flex flex-col items-center min-h-[60vh] z-10">
         <div className="self-start mb-4 px-3 py-1 rounded-lg bg-gray-200 dark:bg-gray-700 w-16 h-8 animate-pulse"></div>
 
         <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mb-6 animate-pulse"></div>
