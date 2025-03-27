@@ -26,37 +26,7 @@ export const getCatBreeds = async (): Promise<CatBreed[]> => {
       },
     });
 
-    // Fetch images for each breed
-    const breedsWithImages = await Promise.all(
-      breedsResponse.data.map(async (breed: CatBreed) => {
-        try {
-          const imageResponse = await axios.get(
-            `${CAT_API_BASE_URL}/images/search`,
-            {
-              params: {
-                breed_ids: breed.id,
-                limit: 1,
-              },
-              headers: {
-                "x-api-key": process.env.NEXT_PUBLIC_CAT_API_KEY,
-              },
-            }
-          );
-
-          return {
-            ...breed,
-          };
-        } catch (imageError) {
-          console.error(
-            `Error fetching image for breed ${breed.id}:`,
-            imageError
-          );
-          return breed;
-        }
-      })
-    );
-
-    return breedsWithImages;
+    return breedsResponse.data;
   } catch (error) {
     console.error("Error fetching cat breeds:", error);
     return [];
