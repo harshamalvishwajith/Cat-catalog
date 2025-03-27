@@ -42,8 +42,20 @@ export default function BreedDetailPage() {
 
   if (loading) {
     return (
-      <div className="container mx-auto p-4 flex justify-center items-center min-h-[60vh]">
-        <div className="animate-pulse text-lg">Loading cat details...</div>
+      <div className="container mx-auto p-4 flex flex-col items-center min-h-[60vh]">
+        <div className="self-start mb-4 px-3 py-1 rounded-lg bg-gray-200 dark:bg-gray-700 w-16 h-8 animate-pulse"></div>
+
+        <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mb-6 animate-pulse"></div>
+
+        <div className="mb-6 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-md w-full max-w-lg">
+          <div className="h-64 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse"></div>
+        </div>
+
+        <div className="space-y-4 max-w-lg bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md w-full">
+          <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+          <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+          <div className="h-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+        </div>
       </div>
     );
   }
@@ -87,13 +99,16 @@ export default function BreedDetailPage() {
 
       <div className="space-y-4 max-w-lg bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md w-full">
         <div className="border-b pb-2 dark:border-gray-700">
-          <strong>Origin:</strong> {breed.origin}
+          <strong>Origin:</strong>
+          <div className="ml-5">{breed.origin}</div>
         </div>
         <div className="border-b pb-2 dark:border-gray-700">
-          <strong>Life Span:</strong> {breed.life_span} years
+          <strong>Life Span:</strong>{" "}
+          <div className="ml-5">{breed.life_span} years</div>
         </div>
         <div>
-          <strong>Description:</strong> {breed.description}
+          <strong>Description:</strong>{" "}
+          <div className="ml-5">{breed.description}</div>
         </div>
       </div>
     </div>

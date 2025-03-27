@@ -43,8 +43,16 @@ export default function Home() {
       />
 
       {loading ? (
-        <div className="flex justify-center">
-          <div className="animate-pulse">Loading breeds...</div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {[...Array(9)].map((_, index) => (
+            <div
+              key={index}
+              className="animate-pulse border rounded-lg p-4 dark:border-gray-700"
+            >
+              <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
+              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+            </div>
+          ))}
         </div>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -55,6 +63,9 @@ export default function Home() {
               className="block p-4 border rounded-lg hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-800 transition duration-300 shadow-sm hover:shadow-md"
             >
               <h2 className="text-xl font-semibold">{breed.name}</h2>
+              <p className="text-gray-600 dark:text-gray-400 mt-1">
+                {breed.origin || "Unknown origin"}
+              </p>
             </Link>
           ))}
         </div>
