@@ -2,6 +2,10 @@
 
 A modern web application showcasing cat breeds from around the world with detailed information and beautiful images.
 
+**[🔗 View Live Demo](https://cat-catalog-murex.vercel.app/)**
+
+![Cat Catalog View](public/catCatalogView.png)
+
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
