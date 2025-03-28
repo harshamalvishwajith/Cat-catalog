@@ -9,10 +9,11 @@ import {
   CatBreedImage,
   getCatImageByBreedId,
 } from "@/app/services/catApiService";
+import ImageSlider from "@/app/components/ImageSlider";
 
 export default function BreedDetailPage() {
   const [breed, setBreed] = useState<CatBreed | null>(null);
-  const [image, setImage] = useState<CatBreedImage | null>(null);
+  const [images, setImages] = useState<CatBreedImage[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const params = useParams();
@@ -23,12 +24,12 @@ export default function BreedDetailPage() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const [breedDetails, imageUrl] = await Promise.all([
+        const [breedDetails, imageResults] = await Promise.all([
           getCatBreedById(breedId),
           getCatImageByBreedId(breedId),
         ]);
         setBreed(breedDetails);
-        setImage(imageUrl);
+        setImages(imageResults);
       } catch (err) {
         console.error("Error fetching cat details:", err);
         setError("Failed to load cat details. Please try again later.");
@@ -60,7 +61,7 @@ export default function BreedDetailPage() {
     );
   }
 
-  if (error || !breed || !image) {
+  if (error || !breed || !images) {
     return (
       <div className="container mx-auto p-4 flex flex-col items-center min-h-[60vh] justify-center">
         <div className="text-red-500 dark:text-red-400 mb-4">
@@ -87,14 +88,20 @@ export default function BreedDetailPage() {
 
       <h1 className="text-3xl font-bold mb-6 text-center">{breed.name}</h1>
 
-      <div className="mb-6 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-        <Image
-          src={image.url}
-          alt={breed.name}
-          width={500}
-          height={500}
-          className="rounded-lg h-64 w-auto object-cover"
-        />
+      <div className="mb-6 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-md w-full max-w-xl">
+        {images && images.length > 0 ? (
+          <ImageSlider
+            images={images}
+            altText={breed.name}
+            autoSlideInterval={5000} // 5 seconds per slide
+          />
+        ) : (
+          <div className="h-64 rounded-lg flex items-center justify-center bg-gray-200 dark:bg-gray-700">
+            <p className="text-gray-500 dark:text-gray-400">
+              No images available
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="space-y-4 max-w-lg bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md w-full">

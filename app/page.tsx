@@ -160,7 +160,7 @@ export default function Home() {
                 Results order
               </label>
               <select
-                value={filters.order || "RAND"}
+                value={filters.order || "ASC"}
                 onChange={(e) =>
                   setFilters({
                     ...filters,

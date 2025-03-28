@@ -27,7 +27,7 @@ export const getCatBreeds = async (
     const breedsResponse = await axios.get(`${CAT_API_BASE_URL}/breeds`, {
       params: {
         limit: params?.limit || 20,
-        order: params?.order,
+        order: params?.order || "ASC",
       },
       headers: {
         "x-api-key": process.env.NEXT_PUBLIC_CAT_API_KEY,
@@ -65,19 +65,19 @@ export const getCatBreedById = async (
 
 export const getCatImageByBreedId = async (
   breedId: string
-): Promise<CatBreedImage | null> => {
+): Promise<CatBreedImage[] | null> => {
   try {
     const imageResponse = await axios.get(`${CAT_API_BASE_URL}/images/search`, {
       params: {
         breed_ids: breedId,
-        limit: 1,
+        limit: 5,
       },
       headers: {
         "x-api-key": process.env.NEXT_PUBLIC_CAT_API_KEY,
       },
     });
 
-    return imageResponse.data[0] || null;
+    return imageResponse.data || null;
   } catch (error) {
     console.error(`Error fetching image for breed ${breedId}:`, error);
     return null;
