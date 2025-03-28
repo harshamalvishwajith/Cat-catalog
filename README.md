@@ -2,7 +2,7 @@
 
 A modern web application showcasing cat breeds from around the world with detailed information and beautiful images.
 
-**[🔗 View Live Demo](https://cat-catalog-it22219916-harshamal-vishwajiths-projects.vercel.app/)**
+**[🔗 View Live Demo](https://cat-catalog-murex.vercel.app/)**
 
 ![Cat Catalog View](public/catCatalogView.png)
 
