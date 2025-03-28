@@ -119,7 +119,7 @@ export default function Home() {
         </button>
 
         {showFilters && (
-          <div className="absolute right-0 top-full mt-2 w-64 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg z-10 border dark:border-gray-700">
+          <div className="absolute right-0 top-full mt-2 w-64 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg z-20 border dark:border-gray-700">
             <h3 className="font-semibold mb-3 pb-2 border-b dark:border-gray-700">
               Filters
             </h3>
@@ -197,7 +197,7 @@ export default function Home() {
         <div className="mb-4 flex items-center">
           <span className="text-sm mr-2">Active filters:</span>
           <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full flex items-center">
-            Origin: {filters.origin} (client-side filter)
+            Origin: {filters.origin} (From fetched data)
             <button
               onClick={() => {
                 const newFilters = { ...filters };
@@ -241,12 +241,12 @@ export default function Home() {
               </button>
             </div>
           ) : (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 z-20">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 z-10">
               {filteredBreeds.map((breed) => (
                 <Link
                   key={breed.id}
                   href={`/breedDetail/${breed.id}`}
-                  className="block p-4 border rounded-lg hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-800 transition duration-300 shadow-sm hover:shadow-md z-20"
+                  className="block p-4 border rounded-lg hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-800 transition duration-300 shadow-sm hover:shadow-md z-10"
                 >
                   <h2 className="text-xl font-semibold">{breed.name}</h2>
                   <p className="text-gray-600 dark:text-gray-400 mt-1">

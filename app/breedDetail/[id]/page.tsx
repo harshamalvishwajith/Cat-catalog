@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
+import { MdArrowBack } from "react-icons/md";
 import {
   getCatBreedById,
   CatBreed,
@@ -83,7 +83,7 @@ export default function BreedDetailPage() {
         onClick={() => router.back()}
         className="self-start mb-4 px-3 py-1 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition flex items-center"
       >
-        ← Back
+        <MdArrowBack /> Back
       </button>
 
       <h1 className="text-3xl font-bold mb-6 text-center">{breed.name}</h1>
